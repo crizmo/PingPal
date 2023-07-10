@@ -2,6 +2,16 @@
 
 Keep your Repl.it projects alive with this simple Repl pinger.
 
+# Usage
+
+If you want to add your own replit urls to the pinger :-
+1. Fork this repo.
+2. Edit the urls array in index.js to add your own urls.
+3. Push the changes to your forked repo.
+4. Go to https://github.com/crizmo/repler and click on the "New Pull Request" button.
+5. Open a pull request and wait for it to be merged.
+6. Once the pull request is merged, your urls will be added to the pinger.
+
 ## Installation
 
 1. Make sure you have Node.js and npm installed on your system.
