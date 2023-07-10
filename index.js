@@ -11,6 +11,7 @@ app.listen(port, () => {
 // Array to store the URLs
 const urls = [
   "https://discord-cards.kurizu.repl.co/api/compact/784141856426033233",
+  "https://anyanime-api.kurizu.repl.co/",
   // Add more URLs here
 ];
 
