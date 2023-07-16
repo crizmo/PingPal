@@ -1,10 +1,10 @@
 # Repler
 
-Keep your Repl.it projects alive with this simple Repl pinger.
+Keep your Repl.it / any other projects alive with this simple Repl pinger.
 
 # Usage
 
-If you want to add your own replit urls to the pinger :-
+If you want to add your own urls to the pinger :-
 1. Fork this repo.
 2. Edit the urls array in index.js to add your own urls.
 3. Push the changes to your forked repo.
