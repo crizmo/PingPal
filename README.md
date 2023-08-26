@@ -1,6 +1,6 @@
 # Repler
 
-Keep your Repl.it / any other projects alive with this simple Repl pinger.
+Keep your Replit / any other projects alive with this simple pinger.
 
 # Usage
 
