@@ -14,6 +14,7 @@ const urls = [
   "https://anyanime-api.kurizu.repl.co/",
   "https://xlsxmongoapi.kurizu.repl.co/",
   "https://xlsx-mongo-api.onrender.com/",
+  "hiroaichatbot.akai771.repl.co",
   // Add more URLs here
 ];
 
