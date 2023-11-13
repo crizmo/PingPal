@@ -5,47 +5,74 @@ const app = express();
 const port = 3000;
 
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-  });  
+  console.log(`Server listening on port ${port}`);
+});
 
-// Array to store the URLs
-const urls = [
-  "https://discord-cards.kurizu.repl.co/api/compact/784141856426033233",
-  "https://anyanime-api.kurizu.repl.co/",
-  "https://xlsxmongoapi.kurizu.repl.co/",
-  // Add more URLs here
+const urlClusters = [
+  {
+    name: "Cluster 1",
+    urls: [
+      "https://discord-cards.kurizu.repl.co/api/compact/784141856426033233",
+      "https://anyanime-api.kurizu.repl.co/",
+    ],
+  },
+  {
+    name: "Cluster 2",
+    urls: [
+      "https://xlsxmongoapi.kurizu.repl.co/",
+      "https://pinscrape.onrender.com/",
+    ],
+  },
+  // Add more URL clusters with names here
 ];
+
+let statusList = {};
 
 const fetchData = async (url) => {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, { timeout: 5000 }); // 5 seconds timeout
     const status = response.status;
     return status;
   } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error);
-    return console.error;
+    console.error(`Error fetching data from ${url}:`, error.message);
+    return error.message;
   }
 };
 
-const keepReplAlive = () => {
-  // Fetch data for each URL
-  urls.forEach((url) => {
-    fetchData(url);
-  });
+const keepReplAlive = async () => {
+  // Fetch data for each URL cluster in parallel
+  statusList = {};
+
+  // Fetch data for each URL cluster in parallel
+  await Promise.all(
+    urlClusters.map(async (cluster) => {
+      const clusterName = cluster.name;
+      const clusterStatus = {};
+      const promises = cluster.urls.map(async (url) => {
+        try {
+          const status = await fetchData(url);
+          clusterStatus[url] = status;
+        } catch (error) {
+          console.error(`Error fetching data from ${url}:`, error.message);
+          clusterStatus[url] = "Error"; // Handle the error case
+        }
+      });
+      await Promise.race([Promise.all(promises), new Promise(resolve => setTimeout(resolve, 25000))]);
+      statusList[clusterName] = clusterStatus;
+    })
+  );
+
+  console.log("Status List:", statusList);
 };
 
-setInterval(keepReplAlive, 25 * 60 * 1000); // 25 minutes
+setInterval(keepReplAlive, 60 * 60 * 1000); // 1 hour
 
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
 app.get("/status", async (req, res) => {
-  const statusList = {};
-  for (const url of urls) {
-    const status = await fetchData(url);
-    statusList[url] = status;
-  }
+  await keepReplAlive(); // Fetch the latest status before responding to /status
   res.json(statusList);
 });
 
