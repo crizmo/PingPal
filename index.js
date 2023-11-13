@@ -65,7 +65,7 @@ const keepReplAlive = async () => {
   console.log("Status List:", statusList);
 };
 
-setInterval(keepReplAlive, 60 * 60 * 1000); // 1 hour
+setInterval(keepReplAlive, 14 * 60 * 1000); // Run every 14 minutes
 
 app.get("/", (req, res) => {
   res.send("Server is running");
