@@ -28,16 +28,33 @@ const urlClusters = [
 
 let statusList = {};
 
-const fetchData = async (url) => {
-  try {
-    const response = await axios.get(url, { timeout: 5000 }); // 5 seconds timeout
-    const status = response.status;
-    return status;
-  } catch (error) {
-    console.error(`Error fetching data from ${url}:`, error.message);
-    return error.message;
+// const fetchData = async (url) => {
+//   try {
+//     const response = await axios.get(url, { timeout: 5000 }); // 5 seconds timeout
+//     const status = response.status;
+//     return status;
+//   } catch (error) {
+//     console.error(`Error fetching data from ${url}:`, error.message);
+//     return error.message;
+//   }
+// };
+
+const fetchData = async (url, maxRetries = 3) => {
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const response = await axios.get(url, { timeout: 5000 }); // 5 seconds timeout
+      if (response.status === 200) {
+        return 200;
+      }
+    } catch (error) {
+      console.error(`Error fetching data from ${url}:`, error.message);
+    }
+    retries++;
   }
+  return "Max retries exceeded";
 };
+
 
 const keepReplAlive = async () => {
   // Fetch data for each URL cluster in parallel
@@ -61,11 +78,7 @@ const keepReplAlive = async () => {
       statusList[clusterName] = clusterStatus;
     })
   );
-
-  console.log("Status List:", statusList);
 };
-
-setInterval(keepReplAlive, 14 * 60 * 1000); // Run every 14 minutes
 
 app.get("/", (req, res) => {
   res.send("Server is running");
@@ -73,6 +86,7 @@ app.get("/", (req, res) => {
 
 app.get("/status", async (req, res) => {
   await keepReplAlive(); // Fetch the latest status before responding to /status
+  console.log(statusList);
   res.json(statusList);
 });
 
