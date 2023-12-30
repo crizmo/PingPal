@@ -1,6 +1,6 @@
-# Repler
+# PingPal
 
-Keep your Replit / any other projects alive with this simple pinger.
+Keep your projects alive with this simple pinger.
 
 # Usage
 
@@ -8,7 +8,7 @@ If you want to add your own urls to the pinger :-
 1. Fork this repo.
 2. Edit the urls array in index.js to add your own urls.
 3. Push the changes to your forked repo.
-4. Go to https://github.com/crizmo/repler and click on the "New Pull Request" button.
+4. Go to https://github.com/crizmo/pingpal and click on the "New Pull Request" button.
 5. Open a pull request and wait for it to be merged.
 6. Once the pull request is merged, your urls will be added to the pinger.
 
@@ -26,8 +26,30 @@ npm install
 # Configuration
 
 1. Open the index.js file in a text editor.
-2. Edit the urls array to specify the URLs you want to fetch data from.
+2. Edit the urls Cluster array to add your own URLs.
+```javascript
+const urlClusters = [
+  {
+    name: "Cluster 1",
+    urls: [
+      "https://discord-cards.kurizu.repl.co/api/compact/784141856426033233",
+      "https://anyanime-api.kurizu.repl.co/",
+    ],
+  },
+  {
+    name: "Cluster 2",
+    urls: [
+      "https://xlsxmongoapi.kurizu.repl.co/",
+      "https://pinscrape.onrender.com/",
+    ],
+  },
+  // Add more URL clusters with names here
+];
+```
+
 3. Save the file.
+4. Open a pull request to add your URLs to the pinger.
+5. Once the pull request is merged, your URLs will be added to the pinger.
 
 # Deployment
 1. Start the server by running the following command:
