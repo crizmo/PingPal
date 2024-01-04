@@ -13,13 +13,6 @@ const urlClusters = [
     name: "Cluster 1",
     urls: [
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
-      "https://anyanime-api.kurizu.repl.co/",
-    ],
-  },
-  {
-    name: "Cluster 2",
-    urls: [
-      "https://xlsxmongoapi.kurizu.repl.co/",
       "https://pinscrape.onrender.com/",
     ],
   },
