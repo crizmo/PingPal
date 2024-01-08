@@ -14,9 +14,13 @@ const urlClusters = [
     urls: [
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
       "https://pinscrape.onrender.com/",
+    ],
+  },
+  {
+    name: "Cluster 2",
+    urls: [
       "https://thala-for-a-reason-e6ki.onrender.com",
       "https://caw-server.onrender.com",
-      
     ],
   },
   // Add more URL clusters with names here
