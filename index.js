@@ -23,6 +23,12 @@ const urlClusters = [
       "https://caw-server.onrender.com",
     ],
   },
+  {
+    name: "Cluster 3",
+    urls: [
+      "https://doc-appoint-server.onrender.com/",
+    ],
+  },
   // Add more URL clusters with names here
 ];
 
