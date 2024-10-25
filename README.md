@@ -4,13 +4,13 @@ Keep your projects alive with this simple pinger.
 
 # Usage
 
-If you want to add your own urls to the pinger :-
+If you want to add your own URLs to the pinger:
 1. Fork this repo.
-2. Edit the urls array in index.js to add your own urls.
+2. Edit the `urlClusters` array in `index.js` to add your own URLs and specify the ping interval.
 3. Push the changes to your forked repo.
 4. Go to https://github.com/crizmo/pingpal and click on the "New Pull Request" button.
 5. Open a pull request and wait for it to be merged.
-6. Once the pull request is merged, your urls will be added to the pinger.
+6. Once the pull request is merged, your URLs will be added to the pinger.
 
 ## Installation
 
@@ -27,23 +27,26 @@ npm install
 
 1. Open the index.js file in a text editor.
 2. Edit the urls Cluster array to add your own URLs.
+
 ```javascript
 const urlClusters = [
   {
     name: "Cluster 1",
+    pingInterval: 60000, // 1 minute in milliseconds
     urls: [
-      "https://discord-cards.kurizu.repl.co/api/compact/784141856426033233",
-      "https://anyanime-api.kurizu.repl.co/",
+      "https://qrnotify.onrender.com",
+      "https://discord-cards.onrender.com/api/compact/784141856426033233",
     ],
   },
   {
     name: "Cluster 2",
+    pingInterval: 120000, // 2 minutes in milliseconds
     urls: [
-      "https://xlsxmongoapi.kurizu.repl.co/",
-      "https://pinscrape.onrender.com/",
+      "https://doc-appoint-server.onrender.com/",
+      "https://caw-server.onrender.com",
     ],
   },
-  // Add more URL clusters with names here
+  // Add more URL clusters with names and ping intervals here
 ];
 ```
 
