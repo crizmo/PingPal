@@ -42,7 +42,6 @@ const urlClusters = [
     name: "Cluster 2",
     pingInterval: 120000, // 2 minutes in milliseconds
     urls: [
-      "https://doc-appoint-server.onrender.com/",
       "https://caw-server.onrender.com",
     ],
   },
