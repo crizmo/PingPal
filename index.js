@@ -11,6 +11,7 @@ app.listen(port, () => {
 const urlClusters = [
   {
     name: "Cluster 1",
+    pingInterval: 300000, // 5 minutes in milliseconds
     urls: [
       "https://qrnotify.onrender.com",
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
@@ -18,12 +19,13 @@ const urlClusters = [
   },
   {
     name: "Cluster 2",
+    pingInterval: 300000, // 5 minutes in milliseconds
     urls: [
       "https://doc-appoint-server.onrender.com/",
       "https://caw-server.onrender.com",
     ],
   },
-  // Add more URL clusters with names here
+  // Add more URL clusters with names and ping intervals here
 ];
 
 let statusList = {};
@@ -40,10 +42,8 @@ const fetchData = async (url) => {
 };
 
 const keepReplAlive = async () => {
-  // Fetch data for each URL cluster in parallel
   statusList = {};
 
-  // Fetch data for each URL cluster in parallel
   await Promise.all(
     urlClusters.map(async (cluster) => {
       const clusterName = cluster.name;
@@ -57,7 +57,7 @@ const keepReplAlive = async () => {
           clusterStatus[url] = "Error"; // Handle the error case
         }
       });
-      await Promise.race([Promise.all(promises), new Promise(resolve => setTimeout(resolve, 25000))]);
+      await Promise.race([Promise.all(promises), new Promise(resolve => setTimeout(resolve, cluster.pingInterval))]);
       statusList[clusterName] = clusterStatus;
     })
   );
