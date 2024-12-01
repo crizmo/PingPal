@@ -13,15 +13,8 @@ const urlClusters = [
     name: "Cluster 1",
     pingInterval: 300000, // 5 minutes in milliseconds
     urls: [
-      "https://qrnotify.onrender.com",
+      "https://mangamemories.onrender.com",
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
-    ],
-  },
-  {
-    name: "Cluster 2",
-    pingInterval: 300000, // 5 minutes in milliseconds
-    urls: [
-      "https://caw-server.onrender.com",
     ],
   },
   // Add more URL clusters with names and ping intervals here
