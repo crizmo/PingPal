@@ -17,7 +17,6 @@ const urlClusters = [
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
     ],
   },
-  // Add more URL clusters with names and ping intervals here
 ];
 
 let statusList = {};
