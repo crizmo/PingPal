@@ -13,7 +13,7 @@ const urlClusters = [
     name: "Cluster 1",
     pingInterval: 300000, // 5 minutes in milliseconds
     urls: [
-      "https://uben.onrender.com",
+      "https://ubenapi.vercel.app",
       "https://discord-cards.onrender.com/api/compact/784141856426033233",
     ],
   },
